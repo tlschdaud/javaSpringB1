@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+/* 공통 스타일 */
+* { font-family: 'Noto Sans KR', sans-serif; box-sizing: border-box; color: #212121; outline: none; }
+html { font-size: 13px; } /* 1rem - 13px */
+body { margin: 0; }
+
+ul, ol { list-style: none; padding: 0; margin: 0; }
+dl, dt, dd { padding: 0; margin: 0; }
+a { text-decoration: none; }
+img { border: 0; }
+
+/* 상단 헤더 영역 S */
+header { position: relative;  display: flex; align-items: center; justify-content: space-evenly; height: 100px; border-bottom: 1px solid #e6e6e6; padding: 0 15px; }
+/*header > section { flex-grow: 1; }
+header > section.logo { flex-grow:2; }*/
+header > .util { position: absolute; top: 10px; right: 80px; word-spacing: 5px; }
+header .logo img { height: 50px; }
+header > section i { font-size: 1.95rem; }
+header > section.left a { margin-right: 10px; }
+header > section.right a { margin-left: 10px;   }
+/* 상단 헤더 영역 E */
+
+/* 상단 메뉴 영역 */
+nav { display: flex; height: 70px; position:sticky; top:0; left:0;  background: #fff;}
+nav > a { flex-grow: 1; width: 0; text-align: center; color: #494949; line-height: 70px; font-size: 1.31rem; }
+
+/* 메인 배너 */
+main .main_bg img { width: 100%; display: block; }
+
+/* 메인 가운데 메뉴 S */
+main .mid_menus { display: flex; flex-wrap: wrap; border: 10px solid #ededed; border-left: 0; border-right: 0;}
+main .mid_menus a { width: calc(100% / 3); text-align: center; height: 50px; line-height: 50px; font-weight: 500; font-size: 1.08rem; border-top: 1px solid #ededed; border-left: 1px solid #ededed; }
+
+main .mid_menus a:nth-of-type(3n+1) { border-left: 0; }
+main .mid_menus a:nth-of-type(1),
+main .mid_menus a:nth-of-type(2),
+main .mid_menus a:nth-of-type(3) { border-top: 0; }
+
+/* 메인 가운데 메뉴 E */
+
+
+/* 테마별 추천 상품 */
+main h2 { text-align: center; margin: 80px; }
+main section.rank { position: absolute; align-items: center; }
+
+/* 퀵메뉴 */
+main > section.quick img{ width: 50px; height: 50px; position: fixed; bottom: 50px; right: 50px;}
+
+/* 푸터 배너 */
+footer { display: flex;  background:#fff; float: left;
+    width: 37.5%; height: 70px; padding-top: 0px; color:#a6a6a6; }
+footer .footerContent1 a { color: #a6a6a6; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+footer .util {
+    display: block;
+    float:left; width: 37.5%; height:70px;
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
