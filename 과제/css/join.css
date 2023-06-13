@@ -25,68 +25,38 @@ nav { display: flex; height: 70px; position:sticky; top:0; left:0; background: #
 nav > a { flex-grow: 1; width: 0; text-align: center; color: #494949; line-height: 70px; font-size: 1.31rem; }
 
 /* 메인 배너 */
-main .main_bg img { width: 100%; display: block; }
-
-/* 로그인 창 S */
-#login-form  {  
-    margin: 30px 250px 50px;
-    white-space: nowrap;
- }
-
-main.login-wrapper {
-    width: 100px;
-    height: 350px;
-    padding: 40px;
-    box-sizing: border-box;
-}
-
-main h2 {
-    display: flex;
-    justify-content: center;
-    margin: 80px;
-    font-size: 24px;
-    color: #ff5e00;
-    margin-bottom: 20px;
-}
+/*main .main_bg img { width: 100%; display: block; }*/
+main div {  
+    display: flex; justify-content: center; align-items: center; width: 100%; margin-top:50px; }
+main div .join-form { width: 100%; }
+h2 { margin-bottom: 30px; font-size: 2.5rem; text-align: center; }
+dl { margin-bottom: 30px; }
+dd { padding: 8px 10px;
+     border-radius:6px; 
+     border: 2px solid #F8F8F8; }
 
 
-#login-form > input {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 48px;
-    padding: 0 10px;
-    box-sizing: border-box;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    background-color: #F8F8F8;
-}
+button {
+        color: #fff;
+        font-size: 20px;
+        background-color: #ff5e00;
+        margin-top: 20px;
+        border-radius:6px;
+        padding: 10px;
+        margin-left: 30px;
+    }
+
+main div { margin-bottom: 15px; }
 
 
-#login-form > input::placeholder{ color: #D2D2D2; }
 
-#login-form > input[type="submit"]{
-    color: #fff;
-    font-size: 16px;
-    background-color: #ff5e00;
-    margin-top: 20px;
-    
-}
-#login-form > input[type="checkbox"]{ display: none; }
+#join-form .userId { border-style : solid }
 
-#login-form > label{ color: #999999; }
 
-#login-form input[type="checkbox"] + label{
-    cursor: pointer;
-    padding-left: 26px;
-    background-size: contain;
-}
 
-#login-form input[type="checkbox"]:checked + label{ background-size: contain; } 
 
-#login-form li { list-style: none; margin-left: 30px;  }
 
-/* 로그인 창 E */
+
 
 /* 퀵메뉴 */
 main > section.quick img{ width: 50px; height: 50px; position: fixed; bottom: 50px; right: 50px;}
