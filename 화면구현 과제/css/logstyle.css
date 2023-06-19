@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+/* 공통 스타일 */
+* { font-family: 'Noto Sans KR', sans-serif; box-sizing: border-box; color: #212121; outline: none; padding: 0;
+    margin: 0; border: none; }
+html { font-size: 15px; } /* 1rem - 13px */
+body { margin: 0; }
+
+ul, ol { list-style: none; padding: 0; margin: 0; }
+dl, dt, dd { padding: 0; margin: 0; }
+a { text-decoration: none; }
+img { border: 0; }
+
+/* 상단 헤더 영역 S */
+header { position: relative;  display: flex; align-items: center; justify-content: space-evenly; height: 100px; border-bottom: 1px solid #e6e6e6; padding: 0 15px; }
+header > .util { position: absolute; top: 10px; right: 50px; word-spacing: 5px; }
+header .logo img { height: 50px; }
+header > section i { font-size: 1.95rem; }
+header > section.left a { margin-right: 15px; }
+header > section.right a { margin-left: 15px;   }
+/* 상단 헤더 영역 E */
+
+/* 상단 메뉴 영역 */
+nav { display: flex; height: 70px; position:sticky; top:0; left:0; background: #fff; border-right: 1px solid #ededed; border-bottom: 1px solid #e6e6e6; }
+nav > a { flex-grow: 1; width: 0; text-align: center; color: #494949; line-height: 70px; font-size: 1.31rem; }
+
+/* 메인 배너 */
+main .main_bg img { width: 100%; display: block; }
+
+/* 로그인 창 S */
+#login-form  {  
+    margin: 30px 250px 50px;
+    white-space: nowrap;
+ }
+
+main.login-wrapper {
+    width: 100px;
+    height: 350px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+main h2 {
+    display: flex;
+    justify-content: center;
+    margin: 80px;
+    font-size: 24px;
+    color: #ff5e00;
+    margin-bottom: 20px;
+}
+
+
+#login-form > input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
+
+#login-form > input::placeholder{ color: #D2D2D2; }
+
+#login-form > input[type="submit"]{
+    color: #fff;
+    font-size: 16px;
+    background-color: #ff5e00;
+    margin-top: 20px;
+    
+}
+#login-form > input[type="checkbox"]{ display: none; }
+
+#login-form > label{ color: #999999; }
+
+#login-form input[type="checkbox"] + label{
+    cursor: pointer;
+    padding-left: 26px;
+    background-size: contain;
+}
+
+#login-form input[type="checkbox"]:checked + label{ background-size: contain; } 
+
+#login-form li { list-style: none; margin-left: 30px;  }
+
+/* 로그인 창 E */
+
+/* 퀵메뉴 */
+main > section.quick img{ width: 50px; height: 50px; position: fixed; bottom: 50px; right: 50px;}
+
+/* 푸터 배너 */
+/*footer { display: flex;  background:#fff; float: left;
+    width: 37.5%; height: 70px; padding-top: 0px; color:#a6a6a6;  }*/
+    footer { height: 470px;}
+    footer .footerContent1 a { color: #a6a6a6; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+    footer .util {
+        display: flex; justify-content: center; height: 80px; line-height: 80px; font-size: 16px; background: #f9f9f9;
+        margin-top:100px;
+    }
