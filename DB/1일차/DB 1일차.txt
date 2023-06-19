@@ -1,0 +1,181 @@
+접속 방법
+    sqlplus 계정/비밀번호
+
+   system : 최고 관리자 계정
+   _aA123456
+
+   exit 엔터 : 종료
+
+   사용자 변경
+      CONN 계정/비밀번호
+
+   계정명 : 대소문자 구분 X
+   계정비밀번호 : 대소문자 구문 O
+
+사용자, 권한, 롤 관리
+1. 사용자 관리
+- 사용자란?
+- 스키마란?
+
+2. 사용자 생성
+   CREATE USER 사용자명 IDENTIFIED BY 비밀번호;
+
+   참고)
+        GRANT 
+
+        사전(Dictionary) 테이블
+             USER_...
+             ALL_...
+             DBA_...
+
+             DICTIONARY -> DICT 별칭
+
+CREATE : 생성 
+     예) CREATE USER
+          CREATE TABLE ..
+
+ALTER :  수정
+
+DROP : 삭제
+
+3. 사용자 정보 조회
+
+4. 오라클 사용자의 변경과 삭제
+   ALTER USER 사용자명
+           INDENTIFIED BY 비밀번호
+           ...
+
+   DROP USER 사용자명[CASCADE];
+ 
+   참고) CASCADE : 사용자 + 스키마 객체 함께 삭제
+
+
+
+권한 관리하기
+
+참고)
+스키마 객체
+    테이블 객체
+
+1. 시스템 권한
+- 시스템 권한 부여
+   GRANT 권한, 권한2 ... TO 사용자명,ROLE, PUBLIC    WITH ADMIN OPTION;
+
+   TO 사용자
+   TO ROLE
+   TO PUBLIC : 모든 사용자
+
+   -  WITH ADMIN OPTION; - 권한 부여 관리자(사용자가 소유한 권한 부여)
+
+
+- 시스템 권한 취소
+   REVOKE 권한 FROM 사용자명/ROLE/PUBLIC 
+
+
+
+   CREATE SESSION
+   CREATE TABLE
+   CREATE SEQUENCE
+   CREATE VIEW
+   CREATE SYNONYM
+
+2. 객체 권한이란?
+   사용자별 권한 (테이블, 인덱스, 뷰, 시퀀스 ...)
+
+
+- 객체 권한 부여
+   GRANT 객체 권한, ... ON 스키마.객체(테이블, 뷰, 시퀀스 ...) TO 사용자명/ROLE/PUBLIC  WITH GRANT OPTION;
+  
+   참고)
+       스키마명(사용자명).테이블
+
+        WITH GRANT OPTION - 객체 권한을 다른 사용자에게 부여할 수 있는 권한
+
+   참고) mysql
+          권한 부여 후
+          FLUSH PRIVILEGES;
+
+
+- 객체 권한 취소
+   REVOKE 객체권한, ... ON 스키마명(사용자명).객체명(테이블, 뷰 ...) FROM 사용자명/ROLE/PUBLIC
+
+롤 관리
+
+1. 사전 정의된 롤
+- CONNECT 롤
+- RESOURCE 롤
+
+2. 사용자 정의 롤
+   CREATE ROLE ROLE 이름;
+   GRANT 권한 TO ROLE 이름;
+   GRANT ROLE 이름 TO 사용자;
+
+- 롤 생성과 권한 포함
+- 부여된 롤과 권한 확인
+CREATE ROLE
+
+- 부여된 롤 취소
+REVOKE ROLE 명칭 FROM 사용자
+
+- 롤 삭제
+DROP ROLE ROLE 명칭;
+
+
+
+
+
+
+----------------------------------------------------
+시험 대비 
+
+CREATE : 생성 
+     예) CREATE USER : 사용자 생성
+          CREATE TABLE : 테이블 생성
+
+ALTER :  수정
+     예) ALTER USER : 사용자 변경
+
+DROP : 삭제
+     예) DROP USER : 사용자 삭제
+          DROP ROLE : ROLE 삭제
+
+GRANT : 객체 권한 부여
+        - 시스템 권한
+            GRANT 시스템 권한, ... TO 사용자명;
+                        + WITH ADMIN OPRION : 권한 부여 관리자
+
+        - 객체 권한
+             GRANT 객체 권한 ON 스키마명(사용자명).객체명 TO 사용자;
+                        + WITH ADMIN OPRION : 권한 부여 관리자
+
+REVOKE : 객체 권한 취소
+         - 시스템 권한
+              REVOKE 시스템 권한 FROM 사용자;
+
+         - 객체 권한
+              REVOKE 객체권한 ON 스키마명(사용자명).객체명 FROM 사용자;
+
+
+
+★1번 ALTER USER SCOTT IDENTIFIED BY tiger ACCOUNT UNLOCK;
+★ 2~3번 리소스 커넥트 GRANT RESOURCE, CONNECT TO ORCLSTUDY;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

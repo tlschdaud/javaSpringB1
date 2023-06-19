@@ -1,0 +1,103 @@
+ 뷰
+0. CREATE VIEW
+1. 인라인 뷰를 사용한 TOP-N SQL문
+
+- ROWNUM : 행 번호
+   - 테이블은 별칭을 사용해야
+
+참고)
+별칭 AS(Alias)
+     - 컬럼명 AS "별칭"
+        - AS, ""는 생략 가능
+        - "": 공백이 있으면 생략 불가
+    - 테이블명 "별칭"
+
+WITH 구문
+WITH 별칭 AS (SELECT ...)
+
+규칙에 따라 순번을 생성하는 시퀀스
+1. 시퀀스란?
+- 특정 규칙에 맞는 연속 문자를 생성하는 객체
+
+2. 시퀀스 생성
+ ★ CREATE SEQUENCE 시퀀스 명;
+
+USER_SEQUENCES : 사전 테이블 : 생성된 시퀀스 정보
+
+참고)
+    CREATE SEQUENCE 권한이 부여
+
+    GRANT CREATE SEQUENCE TO 사용자;
+
+
+3. 시퀀스 사용
+      시퀀스 객체명
+                 .CURRVAL
+                     - 현재 시퀀스 번호
+                 .NEXTVAL
+                     - 현재 시퀀스 번호 반환
+                     - 시퀀스 번호 증가
+
+참고)
+    DUAL : 값만 확인시
+    SELECT 시퀀스 객체.CURRVAR
+
+4. 시퀀스 수정
+    ALTER SEQUENCE 시퀀스명
+5. 시퀀스 삭제
+    DROP SEQUENCE 시퀀스명
+
+참고)
+     오라클 - 시퀀스 객체
+     MySQL - 제약조건 - AUTO_INCREMENT + 기본키
+
+
+공식 별칭을 지정하는 동의어
+1. 동의어
+- 테이블 - 뷰 - 시퀀스 등 객체 이름 대신 사용할 수 있는 다른 이름 
+
+예) DICTIONARY -> DICT
+ - 테이블명이 길거나, 자주 사용되는 테이블
+
+권한
+    CREATE SYNONYM
+    CREATE PUBLIC SYNONYM
+
+2. 동의어 생성
+    CREATE [PUBLIC - 모든 사용자] SYNONYM 동의명
+        FOR 스키마명(사용자명).객체명(테이블, 뷰 ...);
+
+3. 동의어 삭제
+   DROP SYNONYM 동의어명
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
