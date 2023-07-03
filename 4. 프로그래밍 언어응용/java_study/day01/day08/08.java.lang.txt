@@ -1,0 +1,45 @@
+java.lang 패키지
+ - 기본적으로 많이 사용하는 클래스들이 포함
+
+예) String
+   java.lang.String
+
+컴파일러가 패키지명 바로 아래쪽 import java.lang.*;가 추가
+- lang 패키지의 모든 클래스는 그냥 사용 가능
+
+Object 클래스
+   - 모든 클래스의 상의 클래스
+   - 상속이 명시 X -> extends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------
+컴파일러가 자동 추가하는 부분
+
+1. 기본생성자
+2. 모든 생성자 첫번째 줄 super()
+3. 객체의 참조 변수 출력 -> 변수.toString()
+4. 인터페이스 메서드 앞에 public abstract
+5. 인터페이스 변수 앞에 public static final
+6. 지역 내부 클래스, 지역 변수의 상수화 : final
+7. import java.lang.*;
+8. extends java.lang.Object
