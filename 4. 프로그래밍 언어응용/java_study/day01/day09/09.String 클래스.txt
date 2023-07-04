@@ -1,0 +1,28 @@
+String 클래스
+
+1. String을 선언하는 두 가지 방법
+   String 변수명 = "문자열"; - 문자열 상수 : 하나의 객체만 생성
+   String 변수명 = new String("문자열"); - 생성할 때 마다 다른 객체가 생성
+
+   문자열의 객체의 형태가 다양하므로 equals(...) : 동등성 비교를 한다.
+
+2. String 클래스의 final char[] 변수(JDK11)
+   문자열 : 문자(char)가 여러개 줄지어 있는 형태
+
+   private final byte[] values : 상수
+      -> 문자열은 한 번 생성되면 변경 불가
+      -> 문자열 객수 만큼 배열리 생성, 변경 X
+      -> 문자열을 결합할 때 마다 공간의 크기가 변경 -> 새로 만들어
+      -> 문자열 결합을 많이 할 수록 성능 저하 문제가 발생
+
+
+   참고)
+    JDK12
+        final byte[] ...
+
+3. StringBuffer와 StringBuilder 클래스 활용하기
+
+   byte[] values : 버퍼(기본값 16바이트)
+   
+   참고)
+       버퍼(buffer) : 임시 메모리 공간

@@ -1,0 +1,66 @@
+java.lang 패키지
+ - 기본적으로 많이 사용하는 클래스들이 포함
+
+예) String
+   java.lang.String
+
+컴파일러가 패키지명 바로 아래쪽 import java.lang.*;가 추가
+ - lang 패키지의 모든 클래스는 그냥 사용 가능
+
+Object 클래스
+   - 모든 클래스의 상위 클래스
+   - 상속이 명시 X -> extends java.lang.Object 가 추가(컴파일러)
+
+ - Object 클래스에 정의된 메서드
+
+1. toString() 메서드
+   - 객체의 참조 변수를 출력할 때 자동 호출
+   public String toString() {
+      return getClass().getName() + "@" + Integer.toHexString(hashCode());
+   }
+
+    getClass().getName() : 패키지명을 포함한 클래스명
+ 
+    - 재정의를 통해서 멤버 변수의 값을 확인하는 용도로 많이 사용
+
+참고)
+   Object
+       Class getClass() 
+
+       Class객체 : 클래스 로더에 의해서 생성 : 클래스 정보가 담겨 있는 객체
+             - 모든 클래스의 정적 변수로 class가 존재
+             - Object::getClass() : 인스턴스 메서드 : 객체 생성후 Class 객체 조회
+                 - 클래스 내부에서 클래스 정보를 조회
+
+2. equals() 메서드
+   public boolean equals(Object obj) {
+      return (this == obj);
+   }
+
+   - 동일성 비교 : 동일한 주소 ( == ) : 물리적 동일성 / 주소 값의 비교
+
+   - 동등성 비교 : 동등한 가치를 가지고 있는지
+                       equals(...) : 재정의를 통해서 동등성 비교
+
+
+3. hashCode() 메서드
+   - 객체의 주소값
+
+   - 검색을 위한 유일한 값
+   - Object에 정의된 기본 값 : 객체의 주소(유일한 값의 측면에서 ...)
+
+   - 일반적으로 동등성 비교는 equals and hashCode
+
+참고)
+   컬렉션 프레임워크
+       set(집합) : 중복 X
+
+   java.util 패키지:  편의 기능이 모여져 있는 패키지
+          - Objects : 객체의 편의 기능
+          - Arrays : 배열의 편의 기능
+          - Collections : 컬렉션의 편의 기능
+
+  static Objects.hash(Object... values)
+    ... : 가변 매개변수
+
+

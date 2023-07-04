@@ -1,0 +1,69 @@
+Wrapper 클래스
+ - 기본 자료형 위한 클래스
+    - 기본자료형의 기능 부여하기 위한 클래스
+    
+
+정수형		클래스
+   byte		Byte
+   short		Short
+   int		Integer
+   long		Long
+
+실수형
+   float		Float
+   double		Double
+
+논리형
+   boolean	Boolean
+
+문자형
+   char		Character
+
+class Integer {
+   ...
+
+   private int value;
+   ...
+
+}
+
+1. Wrapper 클래스
+
+
+2. 
+
+
+3. 오토박싱과 언박싱
+
+   - 오토박싱
+   - 기본형 -> Wrapper 클래스의 객체
+   int num1 = 10;
+   Integer num2 = num1; // Integer num2 = Integer.valueOf(num1);
+
+   - 언박싱
+   Wrapper 클래스의 객체 -> 기본형
+   int num3 = num1 + num2; // int num3 = num1 + num2.intValue();
+
+
+   참고)
+      new Integer(...) : Deprecated / 권장사항 Integer.valueOf(...)
+
+   변환기능
+
+   int intValue();
+   long longValue();
+   double doubleValue();
+   ... 
+   
+   Integer
+   static int parseInt(String s); : 문자열 -> 정수(int)
+
+   Double
+       static double parseDouble(String s) : 문자열 -> 실수(double)
+
+
+    
+   java.lang.Number : 추상 클래스
+       - Byte, Short, Integer, Double, Float ...
+
+
