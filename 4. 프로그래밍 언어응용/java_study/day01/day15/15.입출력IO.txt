@@ -1,0 +1,28 @@
+입출력(I/O)
+1. 입출력이란?
+	- 컴퓨터 내부 또는 외부와 프로그램간의 데이터를 주고받는 것
+2. 스트림(stream)
+
+
+바이트기반 스트림 
+1. 입력 스트림 - InputStream
+2. 출력 스트림 - OutputStream
+
+문자기반 스트림 
+1. 입력 스트림 - Reader
+2. 출력 스트림 - Writer
+
+
+
+표준입출력
+1. System.in
+2. System.out
+3. System.err
+
+File 
+
+
+직렬화(Serialization)
+- 객체에 저장된 데이터를 스트림에 쓰기(write)위해 연속적인(serial) 데이터로 변환하는 것을 말한다.
+1. ObjectInputStream
+2. ObjectOutputStream
