@@ -1,0 +1,193 @@
+스트림
+- collect()
+	java.util.stream.Collectors 
+		toList, toSet, toMap() toCollection(), toArray
+		
+		joining() : 문자열 결합 
+	
+입출력(I/O)
+java.io
+1. 입출력이란?
+	- Input/Output   입력 / 출력 
+	- 컴퓨터 내부 또는 외부와 프로그램간의 데이터를 주고받는 것
+	
+2. 스트림(stream)
+	- 데이터가 이동하는 통로 
+	- 입력 통로(입력 스트림)
+	- 출력 통로(출력 스트림)
+
+
+바이트기반 스트림 : 데이터 크기가 바이트 단위 / 1바이트씩 읽어오는 스트림
+1. 입력 스트림 - InputStream
+		- abstract int read();
+		
+		구현 클래스 
+		- 기반 입력 스트림
+			- 직접 데이터에 접근하는 스트림 
+			- FileInputStream  : 파일에서 직접 읽어오는 스트림 
+			- ByteArrayInputStream : 메모리에서 직접 읽어오는 스트림(변수)
+				
+				int read() : 읽기(1바이트씩), 다 읽은 경우 -1
+				int available() : 남아있는 바이트 수( 0이면 다 읽어온 상태)
+				void close() : 자원 해제
+				
+				- 1바이트씩 읽어오는 방식 : 효율성 X 
+				- 버퍼를 사용해서 일정 용량만큼 담아서 처리하는것이 효율적 
+					- int read(byte[] b) : byte[] b : 버퍼  / 반환값은 읽어온 바이트 수 
+					
+				참고)
+					unsigned byte :  양의 정수 (0~255)
+					
+					파일 끝에 도달하면 -1 반환 
+						0~255, -1  / int
+			
+		- 보조 입력 스트림
+			- 직접 데이터에 접근 X, 다른 스트림에 보조적인 기능을 추가 제공 
+			- 매개변수 InputStream : 데코레이터 패턴 
+			- FilterInputStream 
+				- BufferedInputStream : 버퍼 기능을 InputStream 추가 
+				- DataInputStream : 기본 자료형을 데이터를 읽을 수 있는 기능 추가 
+									-> 끝까지 다 읽어온 경우에 다시 접근 -> EOFException : (End Of File)
+									
+			- ObjectInputStream : 객체로 읽어 오는 기능 추가 
+			
+2. 출력 스트림 - OutputStream : 1바이트씩 출력
+	- abstract void write(int b)
+	
+	- 기반 출력 스트림 
+		- 직접 데이터에 접근하는 출력 스트림 
+		- FileOuputStream : 파일에 출력 스트림 
+		- ByteArrayOutputStream : 메모리에 출력 
+		
+	- 보조 출력 스트림 
+		- 직접 데이터에 접근 X, 다른 출력 스트림에 추가적인 기능 제공 
+		- 매개변수가 OutputStream, 데이터 접근 X, 데코레이터 패턴
+		
+		- FilterOutputStream 
+			- BufferedOutputStream : 버퍼기능 
+			- DataOutputStream : 기본 자료형을 출력 기능을 추가
+		
+		- ObjectOutputStream : 객체를 출력 할 수 있는 기능 추가 
+		
+문자기반 스트림 : 데이터 크기가 문자 단위(유니코드 - 2, 3 바이트)
+1. 입력 스트림 - Reader
+	- 기반 입력 스트림
+		- 데이터에 직접 접근할 수 있는 스트림 
+		- FileReader 
+		- CharArrayReader
+		- StringReader 
+		
+	- 보조 입력 스트림 
+		BufferedReader  : 버퍼 기능 추가 
+	
+2. 출력 스트림 - Writer
+	- 기반 출력 스트림 
+		- 데이터에 직접 접근할 수 있는 스트림 
+		- FileWriter 
+		- CharArrayWriter
+		- StringWriter
+	
+		- PrintStream 
+		- PrintWriter
+		
+	- 보조 출력 스트림 
+		BufferedWriter : 버퍼 기능 추가 
+
+
+표준입출력 : 콘솔에 입력, 출력
+1. System.in : InputStream : 콘솔에서 입력  / 바이트 단위 스트림 -> 문자 단위 스트림으로 변환(InputStreamReader) 
+			-> 문자 단위 버퍼 보조 스트림(BufferedReader)
+2. System.out : PrintStream
+		print(...) : 출력
+		println(...) : 출력 + 줄개행
+		printf(...) : 형식화 + 출력
+
+3. System.err : PrintStream : 글자 색이 빨간색 
+
+setIn(InputStream ...)
+setOut(printStream ...)
+setErr(PrintStream ...)
+
+참고)
+PrintWriter
+
+File 
+- 파일과 디렉토리와 관련된 기능
+   String pathSeparator : 환경 변수 구분 문자
+       윈도우즈 ;
+       맥 & 리눅스 : :
+
+   String separator : 경로 구분 문자
+      윈도우즈 : \
+      맥 & 리눅스 : /
+
+
+   rwx
+   421
+
+
+
+직렬화(Serialization)
+- 객체에 저장된 데이터를 스트림에 쓰기(write)위해 연속적인(serial) 데이터로 변환하는 것을 말한다.
+   - 객체에서 복구에 필요한 값만 직렬화(저장)
+      - 멤버변수의 값만 저장
+      - 변경이 되지 않는 상수, 메서드 등등은 직렬화 X
+
+1. ObjectInputStream
+2. ObjectOutputStream
+
+직렬화 제외(저장 제외)
+    transient 예약어 추가
+
+
+
+참고)
+	InputStreamReader : 바이트 단위 입력 스트림 -> 문자 단위 
+	
+	OutputStreamWriter : 바이트 단위 출력 스트림 -> 문자 단위.
+
+
+----------------------------------------------------------
+java.io
+
+바이트 단위 스트림
+   입력 스트림(InputStream)
+        기반 스트림
+
+        보조 스트림
+
+   출력 스트림(OutputStream)
+        기반 스트림
+
+        보조 스트림
+
+문자 단위 스트림
+   입력 스트림(Reader)
+        기반 스트림
+
+        보조 스트림
+
+   출력 스트림(Writer)
+        기반 스트림
+
+        보조 스트림
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
