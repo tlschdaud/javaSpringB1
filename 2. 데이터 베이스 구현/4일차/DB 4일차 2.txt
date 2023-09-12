@@ -1,0 +1,166 @@
+SELECT 문의 기본 형식
+- 조회 + WHERE
+
+1. 실습용 테이블 살펴보기
+
+2. 데이터를 조회하는 3가지 방법
+- 셀렉션
+- 프로젝션
+- 조인
+
+
+3. SELECT  문 문법
+SELECT[ALL|DISTINCT] 컬럼명, ...FROM 테이블명;
+               * - 모든 컬럼명
+
+ALL - 기본값 : 중복을 포함한 모든 레코드
+DISTINCT - 중복을 제외한 레코드
+
+4. 중복 데이터를 삭제하는 DISTINT
+- 컬럼 기준의 중복 제거
+- 컬럼이 여러개 있는 경우 -> 조합한 경우가 중복되면 제거
+
+
+5. 별칭 설정하기
+    - 컬럼간 연산 가능
+    - AS(Alias)
+    - 컬럼, 테이블 가능(ORACLE X, MYSQL O)
+    - 컬럼명 AS "별칭"
+    - AS 생략 가능
+    - ""생략 가능 : 별칭안에 공백이 없는 경우만 / 공백이 있는 경우는 반드시""
+
+    -  테이블도 별칭이 가능, 오라클에서는 AS 키워드를 사용 X
+
+6. 원하는 순서로 출력 데이터를 정렬하는 ORDER BY
+ - 오름차순(ASC), 내림차순(DESC)
+
+SELECT ... FROM 테이블명 ... ORDER BY 컬럼명 [ASC - 기본값|DESC]
+ASC - 기본값 : 생략가능
+
+ORDER BY 컬럼명1 [ASC|DESC], 컬럼명2 [ASC|DESC] ...
+
+
+참고)
+CREATE INDEX 인덱스명 ON 테이블명 (컬럼명 [ASC|DESC])
+
+CREATE INDEX idx_hiredate ON EMP (HIREDATE DESC)
+
+
+--------------------------------------------------------------------
+시스템 계정 접속
+sqlplus SYSTEM/_aA123456
+
+SCOTT  (계정 잠김 해제)
+
+ALTER USER SCOTT IDENTIFYED BY tiger ACCOUNT UNLOCK;
+
+스키마
+CREATE USER  사용자명 IDENTIFYED BY 비번 -> ACCOUNT UNLOCK
+
+시스템 권한 - 사용자, 테이블, 세션, 시퀀스, ... 동의어 ...관련 권한
+
+객체 권한 - 사용자별 객체에 대한 권한, 조회, 수정, 삭제 등등
+
+
+시스템 권한
+GRANT 권한 TO 사용자명
+
+REVOKE 권한 FROM 사용자명;
+
+객체 권한
+GRANT 권한 ... ON 스키마명.객체명 TO 사용자
+
+REVOKE 권한 ON 스키마명. 객체명 FROM 사용자
+
+도메인 영역 무결성
+(자료형)
+
+문자
+     CHAR(갯수) : 갯수만큼 고정 공간 - 국가코드 KR(CHAR(2))
+     VARCHAR2(최대 바이트수) : 최대 바이트 수만큼 유동적으로 갯수가 결정 (4000bytes)
+                                        - 한줄 텍스트
+     NVARCHAR2
+
+     CLOB(Character Large OBject) : 최대 4GB, 여러줄 텍스트
+숫자
+     NUMBER(전체자리수, 소수점 자리수) : 정수, 실수
+     price NUMBER(5) : 최대 5자리 정수
+     price NUMBER(5,2) : 전체 자리수가 5자리, 그중에 소수점이 2자리
+                               100.12
+날짜 
+    DATE : 날짜 + 시간
+
+       참고)
+          MySQL
+                DATE : 날짜
+                TIME : 시간
+                DATETIME : 날짜 + 시간
+
+기타
+    BLOB (Binary Large Object) : 4GB
+
+
+DDL : 데이터 정의어
+  - CREATE, ALTER, DROP
+  - CREATE TABLE ... CREATE INDEX, CREATE SEQUENCE, CREATE VIEW ..
+  - 쿼리 실행 시 즉시 COMMIT -> ROLLBACK 불가
+
+DML : 데이터 조작어
+  - SELECT, INSERT, UPDATE, DELETE
+  - 트랜잭션 수동 관리 가능(COMMIT, ROLLBACK 가능)
+
+트랜잭션
+   - 작업 수행의 최소 단위(COMMIT 전까지)
+   - COMMIT - 작업을 영구 반영
+   - ROLLBACK - 작업취소
+
+
+CREATE TABLE 테이블명 (
+  컬럼명 자료형[제약조건],
+  ...
+);
+
+제약조건
+  - 기본키 PRIMARY KEY
+  - NOT NULL : 필수 항목
+  - UNIQUE, NOT NULL : 중복 X
+  - DEFAULT 기본값
+  - REFERENCES 테이블명(기본키명) 
+
+  -> 제약조건명이 시스템에서 자동 생성 -> 관리가 어렵다.
+  -> CONSTRAINT 제약조건명 제약조건
+
+   LOGIN_PWD VARCHAR2(20) CONSTRAINT TB_LPWD_NN NOT NULL
+
+외래키 : 참조 무결성 제약조건
+  - 1) 부모 테이블에 없는 데이터는 자식쪽에서 추가 X
+  - 2) 자식 데이터가 있는 부모는 삭제 불가
+  - 3) ON DELETE CASCADE : 부모가 삭제외면 자식도 연쇄 삭제
+  - 4) ON DELETE SET NULL : 부모가 삭제되면 자식 NULL 로 변경
+
+
+-> SQLPLUS 접속 -> 캡쳐
+-> SCOTT 계정 활성화 -> 캡쳐
+-> DBWeaver 연결 설정 -> 캡쳐
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+제약조건
+1. 데이터 형태와 범위를 정하는 CHECK
+
+참고)
+    LENGTH(컬럼명) : 글자의 갯수(UTF-8 한글 1자 - 3바이트)
+    LENGTHB(컬럼명) : 바이트 수
+
+    mysql
+       - LENGTH(컬럼명) : 바이트 수
+       - LECHTH_CHAR(컬럼명) : 글자수
+
+2. 제약 조건 비활성화, 활성화
+
+비활성화 
+     ALTER TABLE 테이블명 DISABLE CONTRAINT 제약조건명;
+
+활성화
+     ALTER TABLE 테이블명 ENABLE CONSTRAINT 제약조건명;
+
+
+3. 기본값
+   DEFAULT SYSDATE
