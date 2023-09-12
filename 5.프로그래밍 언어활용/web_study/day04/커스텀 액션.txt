@@ -1,0 +1,151 @@
+액션 태그 → 커스텀 태그 : <jsp:…/>
+
+JSTL → 커스텀 태그
+
+1. 커스텀 액션을 만드는 방법
+    
+    1) 태그 파일을 작성해서 만드는 방법
+    
+    - 확장자 .tag
+    
+    2) 태그 클래스를 작성해서 만드는 방법
+    
+    - SimpleTag 인터페이스
+    - SimpleTagSupport 클래스
+
+1. 태그파일을 이용해서 커스텀 액션 만들기
+    
+    1) tag 지시자는 태그 파일에만 사용할 수 있는 지시자인데, 웹 컨테이너가 태그 파일을 처리할 때 필요한 여러가지 정보를 기술하는 역할을 합니다.
+    
+    2) tag 지시자는 page 지시자와 마찬가지로<%@으로 시작해서 %>로 끝나야 합니다. 그리고<%@바로 다음에는 지시자의 종류를 표시하는 tag라는 이름이 와야 합니다.
+    
+2. 태그 파일에서 사용할 수 있는 지시어
+    
+    <%@ …%>
+    
+    1) tag 지시자 - : page 지시자
+    
+    body-content
+    
+                   : empty : 단일 태그
+    
+                   열린 태그, 닫힌 태그 : 태그 안쪽에 내용물
+    
+                   : scriptless - 자바 코드 X, EL식, 액션 태그는 사용 가능, 태그 라이브러리
+    
+                   : tagdependent - 텍스트만 가능
+    
+    trimDirectiveWhitespaces="true” : 공백 제거
+    
+    pageEncoding=”UTF-8 : tag 파일 번역시 한글 깨짐
+    
+    2) include
+    
+    3)
+    
+    4) attibute 지시자 : 속성 설정
+    
+    - name=”속성명”
+    - 자바 지역 변수
+    - EL 속성명
+    - 기본값 자료형 : 문자열(java.lang.String)
+    - type=”속성의 자료형”
+        
+        참고) 기본 자료형 X - int, float, double …
+        
+        : 기본 자료형을 사용해야 하는 경우 기본형 래퍼클래스로 설정
+        
+        int → Integer
+        
+    
+    5)
+    
+    연동방법
+    
+    <%@ taglib prefix=”별칭” tagdir=”태그 경로” %>
+    
+3. 한글을 포함하는 태그 파일 
+4. 애드리뷰트(속성)를 지원하는 태그 파일
+5. 태그 파일의 내장 변수
+    1. HttpServletRequest request
+    2. HttpSerblertResponse response
+    3. JspWriter out
+    4. ServletContext application
+    5. ServletConfig config
+    6. HttpSession session
+    7. JspContext jspContext : 실제 객체 - pageCopntext
+    
+6. 동적 애트리뷰트를 지원하는 태그 파일
+    - dynamic-attributes
+        - 태그의 속성 값을 Map형태로 저장
+        - <%@ tag dynamic-attributes=”attrs %>
+        - attrs : Map<String, Object>형태
+            
+            attrs.속성명, attrs[’속성명’]
+            
+        - pageContext 범위의 EL식 속성
+        
+7. 커스텀 액션의 본체를 처리하는 태그 파일
+    
+    body-content
+    
+    - scriptless : 자바코드  X, EL식 사용 O, 다른 태그 O
+    - tagdependent : 텍스트로만 인식
+
+<jsp:doBody /> : 태그 안쪽 내용물
+
+1. 변수를 지원하는 커스첨 액션
+    
+    variable 지시어
+    
+    1) name-given
+    
+    - 속성
+    
+    2) variable-class
+    
+    - 속성 자료형
+    
+    3) scope
+    
+    - NESTED : 태그 안쪽에서 EL식 변수
+    - AT_BEGIN : 태그 바로 아래
+    - AT_END : 태그 바깥쪽에 사용
+    
+    1. 커스텀 액션의 본체 안에서 변수를 사용하는 예
+        
+        1) name-from-attribute
+        
+        - 설정한 속성명을 EL 변수명으로 대신 사용
+        
+        2) alias : 원 EL식 변수명
+        
+        참고)
+        
+        속성에 설정할 수 있는 값의 형태 : 기본 값(10, 문자), EL식 변수, 자바 코드<%=…%>
+        
+        - var에 설정 가능한 값 : 기본 형태의 값 :  문자
+        
+        rtexprvalue : true(기본값), false
+        
+        java.time 핵심 클래스 → 형식화
+        
+        - Temporal, TemporalAccesor, TemporalAdjustor
+        
+        LocalDate
+        
+        LocalTime
+        
+        LocalDAteTime
+        
+        ZonedDateTime
+        
+        OffsetDateTime
+        
+        Instant
+        
+        …
+        
+        DateTimeFormatter
+        
+        .format(TemporalAccessor)
