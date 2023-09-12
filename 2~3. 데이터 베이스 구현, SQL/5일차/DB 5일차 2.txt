@@ -1,0 +1,217 @@
+데이터 처리와 가공을 위한 오라클 함수
+- 내장함수 종류
+1) 단일행 함수
+   - 행 하나의 데이터 적용
+
+2) 다중행 함수
+   - 행 여러개의 결과 -> 적용
+   예) 합계, 평균
+     SAL의 합계
+
+단일행 함수
+   문자, 숫자, 날짜
+
+문자함수
+
+1. UPPER, LOWER, INITCAP
+  
+   UPPER : 소문자 -> 대문자
+   LOWER : 대문자 -> 소문자
+   INITCAP : 첫글자만 대문자, 나머지는 소문자
+
+2. LENGTH
+    - 문자 길이(문자의 실제 갯수)
+
+   참고)
+      CHECK(LENGTH(LOGIN_PWD)>3)    
+
+      LENGTHB - 문자의 바이트 수
+                  - 알파벳 1개 - 1바이트, UTF-8 기준 한글 1자 - 3바이트
+
+     MySQL - LENGTH - 문자의 바이트 수
+               - LENGTH_CHAR - 문자의 실제 갯수
+
+3. SUBSTR
+    - 문자열 일부를 추출할 때
+    - SUBSTR(컬럼명, 시작 위치, 추출 길이) // 시작위치는 1부터 시작
+      SUBSTR(JOB, 1, 2) : JOB 컬럼에서 첫번째부터 2자 추출
+
+    - SUBSTR(컬럼명, 시작위치); // 시작위치에서 끝까지
+
+    시작 위치 - 1부터 시작 좌->우 : 양수
+                 - 음수 : 예) -1 우측 끝 글자 : 이동 방향 우->좌
+
+4. INSTR
+    - 문자의 위치(1부터 시작)
+    - 문자가 없으면 0을 반환
+    - 1 이상을 반환 -> 문자가 존재 : LIKE 포함(LIKE'%키워드%') 조건을 대체
+
+   참고)
+      자바스크립트, 자바 -> String
+                                         indexOf: 문자열의 위치( 0부터 시작) 
+
+5. REPLACE
+    문자 교체
+
+    REPLACE(문자열, 찾는 문자, 변경할 문자)
+
+6. LPAD, RPAD
+
+   LPAD : 왼쪽으로 부족한 문자열 채우기
+   RPAD : 오른쪽으로 부족한 문자열 채우기
+
+   LPAD(문자열, 자리수, 자리수가 남는 경우 채워줄 문자)
+
+SELECT ENAME, RPAD(SUBSTR(ENAME, 1, 3), LENGTH(ENAME), '*') FROM EMP;
+
+7. CONCAT
+   - 문자열 결합
+    직원명 : 직책
+      CONCAT(CONCAT(ENAME, ' : '), JOB)
+
+      참고)
+
+- || 연산자 : 문자열 결합
+   문자열 || 문자열 || 문자열
+SELECT EMPNO, CONCAT(CONCAT(ENAME, ':'), JOB) "사원명 : 직책" FROM EMP;
+=
+SELECT EMPNO, ENAME || ' : ' || JOB "사원명 : 직책" FROM EMP;
+
+8. TRIM, LTRIM, RTRIM
+   - 공백 제거
+
+  - TRIM : 양쪽 공백 제거
+             - 왼쪽, 오른쪽 여백을 지정해서 제거
+             - 특정 문자열 제거
+               TRIM(방향 '제거할 문자열' FROM 문자열)
+
+SELECT '[' || TRIM('                    __ABC__            ') ||']' FROM DUAL;
+
+               방향 - READING : 왼쪽
+                     - TRAILING : 오른쪽
+                     - BOTH : 양쪽
+
+SELECT '[' || TRIM(LEADING ' ' FROM '              __ABC__             ') ||']' FROM DUAL;
+SELECT '[' || TRIM(TRAILING ' ' FROM '              __ABC__             ') ||']' FROM DUAL;
+SELECT '[' || TRIM(BOTH ' ' FROM '              __ABC__             ') ||']' FROM DUAL;
+
+  - LTRIM : 왼쪽 공백 제거
+             - 특정 문자열 제거
+
+  - RTRIM : 오른족 공백 제거
+             - 특정 문자열 제거
+SELECT '[' || TRIM(BOTH '_' FROM TRIM ('   _____ABC____    ')) || ']' FROM DUAL;
+
+숫자함수 
+1. ROUND : 반올림
+    ROUND(숫자, 반올림 위치 - 0)
+        ROUND(1234.5678, 0)
+                1234자리까지 출력-> 소수점 첫째 자리에서 반올림
+           
+                 양수 : 소수점 자리
+                 음수 : 정수 자리
+                  1 2  3 4. 5 6 7
+                    -2 -1 0 1 2
+2. CEIL : 올림
+SELECT CEIL(1234.56 * 10) / 10 FROM DUAL;
+3. FLOOR : 버림
+SELECT FLOOR(1234.56 * 100) / 100 FROM DUAL;
+
+4. TRUNC - 절사
+    TRUNC(숫자, 절사 위치 - 기본 값 : 소수점 첫째 자리까지 제거 - 0)
+       절사 위치 : 양수 - 소수점 자리
+       절사 위치 : 음수 - 정수 자리
+
+5. MOD : 나머지 연산
+    MOD(숫자, 나누는 수)
+    
+  
+   참고)
+      자바, 자바스크립트 나머지 연산자 %
+
+날짜 함수
+1. 연산자 -
+1) 날짜 데이터 + 숫자 : 숫자만큼 날짜 더하기
+2) 날짜 데이터 - 숫자 : 숫자만큼 날짜 빼기
+3) 날짜 데이터 - 날짜 데이터 : 간격 일수
+4) 날짜 데이터 + 날짜 데이터 :
+
+2. ADD_MONTHS
+   - 몇 개월 더하기(양수) / 빼기(음수)
+   ADD_MONTH(날짜, 데이터, 더하거나 뺄 개월수)
+   -
+
+3. MONTHS_BETWEEN
+   - 월 단위의 간격
+   - MONTHS_BETWEEN(비교 날짜1, 비교 날짜2)
+
+4. NEXT_DAY, LAST_DAY
+
+   NEXT_DAY : 다음 요일
+      NEXT_DAY(날짜, "요일 문자");
+
+   LAST_DAY : 현재 달의 마지막 일
+      LAST_DAY(날짜);
+
+형 변환 함수
+1. TO_CHAR : 형식화된 문자
+    - 날짜 -> 형식화된 날짜
+       Y - 연도 / YYYY - 4자리 연도 / YY - 2자리 연도
+       R - 연도 / RRRR - 4자리 연도 / RR - 2자이
+
+        - 차이점 : 2자리
+                YY : 현재 년도 기준 40 ->  2040
+                RR : 가장 가까운 년도 기준 80 -> 1980
+                MM : 월
+                DD : 일
+
+                HH : 시(24) / hh - 12
+                MI : 분
+                SS : 초
+ 
+    - 숫자 -> 형식화된 숫자 문자
+        999.99 -> 소수점을 2자리 까지 표기
+        999,999 -> 3자리마다 , 를 추가
+
+   TO_CHAR(숫자, '패턴')
+
+SELECT '$' || TRIM(TO_CHAR(1234.5678, '999,999.99')) FROM DUAL;
+
+2. TO_NUMBER
+   형식화된 숫자 문자열 -> 숫자
+
+   문자 + 숫자 - 문자숫자 : 결합
+
+   - 암묵적인 형변환 : 문자라고 하더라도 숫자로 충분히 판단 가능 -> 자동 변경
+
+    TO_NUMBER(형식화 숫자 문자열, 패턴) : -> 숫자
+
+3. TO_DATE
+   - 형식화된 문자 -> 날짜
+   TO_DATE(형식화된 날짜 문자, 형식) -> 날짜
+
+NULL 처리 함수
+1. NVL
+
+2. NVL2
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
