@@ -1,0 +1,175 @@
+CSS
+3. 레이아웃
+	box-sizing 
+		- content-box : 태그의 내용물의 너비와 높이가 기준 (기본값)
+								- 내부 여백, 경계선
+		
+		- border-box : 태그의 경계선의 너비와 높이가 기준
+		
+4. 포지션
+	position:  
+		절대 위치 
+			static(기본값)
+			
+		상대 위치 - 기준에 따라서 상대적으로 상하좌우 이동
+			relative  : 기준 위치 : 본인 요소 
+			
+			absolute : 기준 위치 : 1) 문서 시작점 
+										 2) 상위 요소에 상대 위치 설정(relative, absolute, fixed) : 상위 요소 시작점 기준 위치 		
+			
+			fixed : 기준 위치 : 뷰포트 기준 / 보이는 화면 기준
+						참고)
+							뷰포트 : 보이는 화면
+			
+			참고)
+				top: 위 -> 아래 
+				bottom : 아래 -> 위
+				left : 좌 -> 우 
+				right : 우 -> 좌 
+				
+				z-index : 숫자가 클 수록 상위 층에 있다.
+
+참고)
+border : 경계선 
+	border-width : 두께 
+	border-color : 색상 
+	border-style : solid - 직선|dotted - 점선|dashed -  ------
+		
+	
+	border: 두께 스타일 색상;
+			border-top
+			border-bottom 
+			border-left
+			border-right 
+
+border-radius : 모서리 둥글기 
+					(px, %)
+		
+		참고) border-radius: 50%; -> 원
+		
+		
+5. float
+	 - left : 왼쪽부터 오른쪽으로 배치 
+	 - right : 오른쪽에서 왼쪽으로 배치 
+	
+	참고) clear : clear 하기 전까지는 다른 요소에 영향을 줄수 있습니다.
+				- left  :  - float: left 적용 속성 제거 
+				- right : - float: right 적용 속성 제거 
+				- both : float:left, float:right 둘다 속성 제거 
+				- 너비와 높이를 지정할 수 있는 공간 속성 적용 가능 - block, inline-block
+	
+6. margin
+7. padding
+
+8. media query 
+	- break point :  기준점에 따라서  CSS 적용 달리하는 기법 
+	
+	@media 장비종류(all) and (max-width: 기준px) {   : 기준 px 이하 까지 적용 CSS 
+		// 적용 CSS 
+	}
+	
+	@media 장비종류(all) and (min-width: 기준px) { : 기준 px 이후 적용 CSS
+		// 적용 CSS
+	}
+	
+	
+	참고) 여백 
+		왼쪽 외부 여백  : margin-left
+		오른쪽 외부 여백 : margin-right
+		아래쪽 외부 여백 : margin-bottom
+		위쪽 외부 여백 margin-top
+		
+9. 그래픽
+	background  : 배경색, 배경 이미지 
+		background-color : 배경색 
+									1) 색상명 
+									2) rgb, rgba
+									3) #hex code, #cccccc -> #ccc
+		background-image : 이미지 
+									url("이미지 경로"); 
+		
+		background-repeat : 이미지 반복 
+									repeat-x : 좌->우 반복 
+									repeat-y : 위->아래 반복 
+									no-repeat : 반복 X, 1개만 출력
+									
+		background-position: 이미지 위치 설정 		
+									좌우 상하
+									
+							예) background-position: 100px 50px;  
+											-> 좌 -> 100px 
+											-> 위 -> 50px;
+									
+									left - 좌|center - 가운데|right - 우     top - 상단|center - 가운데|bottom - 하단
+									
+	background 단축 표현 
+		
+		- background: 색상 이미지 반복여부 위치
+					- 색상 속성은 이미지가 있는 경우 생략 가능 
+					
+10. overflow
+			- visible (기본값) - 내용물이 넘치더라도 표시 
+			- hidden : 넘친 내용물 감추기
+			- scroll : 스크롤바 생성 (무조건)
+			- auto :  내용물이 넘칠때  scroll 생성, 충분할때 scroll 생성 X
+		
+	참고) 말줄임표 
+		text-overflow : ellipsis; -> 말줄임표 ...
+							- 2가지 속성이 추가 (white-space: nowrap; overflow: hidden; )
+		
+		white-space: wrap - 화면 끝에 도달 -> 줄개행 
+							- nowrap - 줄개행 X
+						
+						
+11. transition
+	- 전환 효과 : CSS 속성이 변환시 지연 효과(애니메이션 ...)
+	
+	transition-duration : 전환효과 진행시간 
+	transition-property : CSS 속성 
+	transition-timing-function : 애니메이션 효과 종류(linear, ease, ease-in, ease-out, ease-in-out)
+	
+	transition-delay : 전환효과 발생전 지연시간
+	
+	transition 축약 표기 
+		transition: property(속성) duration(지연시간) timing-function(애니메이션 효과), delay(대기시간)
+	
+12. flex box
+	- 배치
+	- display: flex
+		: 하위 요소 배치 
+		
+	- flex-direction 
+			: row (기본값) - 좌->우
+			: row-reverse - 우 -> 좌 
+			
+			: column - 위 -> 아래 
+			: column-reverse - 아래 -> 위 
+		
+	참고)
+		ul : list-style-type: none; 
+		li 
+	
+	- justify-content : 정렬(좌우 가운데)
+			flex-start - 왼쪽(기본값)
+			flex-end - 오른쪽
+			center - 가운데
+			
+			여백
+			space-between : 요소 사이에 균등 여백 
+			space-around : 요소 좌우 균등 여백 
+			space-evenly : 여백을 공평하게 배분
+			
+	- align-items : 정렬(상하 가운데)
+		- stretch : 기본값 
+		- flex-start : 위쪽
+		- flex-end : 아래쪽 
+		- center: 가운데
+		
+각 하위 요소 적용 
+	flex-grow : 여백에 대한 분할 비중 
+					- 요소 크기의 비율 X (여백의 비율 O)
+					- 정확한 요소 크기의 비율 -> 요소 너비 0으로 조정, 남은 여백이 전체 -> 정확한 균등 배분
+					
+					
+참고)
+	index.html : 대문 페이지, 주소만 입력시 자동 인식하는 기본 html 
